@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.bluntbuilds.webappcreator</id>
+  <name>Web App Creator</name>
+  <project_license>LicenseRef-proprietary</project_license>
+  <developer_name>BluntBuilds</developer_name>
+  <summary>Web app creation tool</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <launchable type="desktop-id">org.bluntbuilds.webappcreator.desktop</launchable>
+  <description>
+    <p>Web App Creator.</p>
+    <p>A graphical tool using Python3 and GTK3 to create web applications.</p>
+  </description>
+  <categories>
+    <category>Utility</category>
+    <category>Network</category>
+  </categories>
+  <releases>
+    <release version="1.0.0.0" date="2024-05-23"/>
+  </releases>
+</component>

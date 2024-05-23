@@ -1,0 +1,21 @@
+[Desktop Entry]
+Categories=Utility
+Comment[en_US]=A graphical tool using Python3 and GTK3 to create web applications.
+Comment=A graphical tool using Python3 and GTK3 to create web applications.
+Exec=python3 /bin/webappcreator/org.bluntbuilds.webappcreator.py "$@"
+GenericName[en_US]=
+GenericName=
+Icon=org.bluntbuilds.webappcreator.png
+MimeType=
+Name[en_US]=Web App Creator
+Name=Web App Creator
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=
+SingleMainWindow=true
+X-GNOME-SingleWindow=true
+X-SingleMainWindow=true

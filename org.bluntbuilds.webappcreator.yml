@@ -1,0 +1,89 @@
+id: org.bluntbuilds.webappcreator
+runtime: org.freedesktop.Platform
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
+command: ./webappcreator.sh
+
+separate-locales: false
+
+finish-args:
+  - --share=ipc
+  - --share=network
+  - --socket=x11
+  - --socket=pulseaudio
+  - --device=all
+  # File Manager
+  - --talk-name=org.freedesktop.FileManager1
+  # System tray icon
+  - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.kde.StatusNotifierWatcher
+  - --own-name=org.bluntbuilds.webappcreator
+  # Files
+  - --filesystem=xdg-Desktop
+  - --filesystem=xdg-music
+  - --filesystem=xdg-pictures
+  - --filesystem=xdg-icons
+
+  # IME
+  # - --env=QT_IM_MODULE=
+  # Hidpi scale
+  - --env=QT_AUTO_SCREEN_SCALE_FACTOR=1
+  # Fix `Could not find the Qt platform plugin "wayland"`
+  - --unset-env=QT_QPA_PLATFORM
+
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /man
+  - /share/doc
+  - /share/gtk-doc
+  - /share/man
+  - /share/pkgconfig
+  - '*.la'
+  - '*.a'
+
+  - modules:
+
+            name: cpython
+            sources:
+
+                    type: archive
+                    url: https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tar.xz"
+                    sha256: f434053ba1b5c8a5cc597e966ead3c5143012af827fd3f0697d21450bb8d87a6
+
+            name: pip-install
+            buildsystem: simple
+            build-options:
+                build-args:
+                    --share=network
+            build-commands:
+                pip3 install requests bs4 pygi plyvel
+
+            name: webappcreator
+            buildsystem: simple
+            build-commands:
+  - install -Dm644 org.bluntbuilds.webappcreator.metainfo.xml -t /app/share/metainfo
+  - install -Dm644 org.bluntbuilds.webappcreator.png -t /app/share/icons/hicolor/512x512/apps
+  - install -Dm644 org.bluntbuilds.webappcreator.desktop -t /app/share/applications
+  - install -D org.bluntbuilds.webappcreator.py /app/bin/
+  - install -D -x webappcreator.sh /app/bin/
+
+  - sources:
+
+      - type: dir
+        path: .
+
+      - type: file
+        path: org.bluntbuilds.webappcreator.py
+
+      - type: file
+        path: webappcreator.sh
+
+      - type: file
+        path: org.bluntbuilds.webappcreator.metainfo.xml
+
+      - type: file
+        path: org.bluntbuilds.webappcreator.png
+
+      - type: file
+        path: org.bluntbuilds.webappcreator.desktop
